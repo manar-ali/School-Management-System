@@ -1,0 +1,70 @@
+﻿@model IEnumerable<DatabaseAccess.tbl_category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<p>
+    @Html.ActionLink("dd Exam Type", "Create", null, new { @class = "btn btn-success" })
+</p>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">All Employee's</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>
+                            Subject Name
+                        </th>
+                        <th>
+                            Exam Name
+                        </th>
+                        <th>
+                            TotalMark
+                        </th>
+                        <th>
+                            Room Name
+                        </th>
+
+                        <th>
+                            View All Questions
+                        </th>
+
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.SubjectTable.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cat_name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalMark)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.cat_encyptedstring)
+                        </td>
+
+                        <td>
+                            <a class="btn btn-info btn-sm" href="@Url.Action("viewallquestion","ExamSystem",new {id=item.cat_id })">View  Questions Of This Exam</a>
+                        </td>
+
+                        <td class="btn-group">
+                            @Html.ActionLink("Edit", "Edit", new { id = item.cat_id }, new { @class = "btn btn-primary" })
+                            @Html.ActionLink("Details", "Details", new { id = item.cat_id }, new { @class = "btn btn-info" })
+                            @Html.ActionLink("Delete", "Delete", new { id = item.cat_id }, new { @class = "btn btn-dengar" })
+                        </td>
+                    </tr>
+                    }
+
+            </table>
